@@ -13,12 +13,6 @@ export class OperationsModel {
         return this.operationsConfiguration.client;
     }
 
-    public get acceptHeader(): Record<string, string> {
-        return {
-            Accept: 'application/vnd.pointivo+json;version=1;charset=utf-8'
-        };
-    }
-
     protected createErrorModel(errorData: any): ApiErrorModel {
         const errorModel = ApiErrorModel.createErrorModel(errorData);
         return errorModel;
