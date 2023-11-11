@@ -22,7 +22,8 @@
   "homepage": "https://github.com/guyettinger/gle-roboflow-rest-client#readme",
   "dependencies": {
     "axios": "^1.6.1",
-    "class-transformer": "^0.5.1"
+    "class-transformer": "^0.5.1",
+    "form-data": "^4.0.0"
   },
   "devDependencies": {
     "@jest/globals": "^29.7.0",
@@ -35,8 +36,8 @@
     "rollup": "^3.29.3",
     "rollup-plugin-dts": "^6.0.2",
     "rollup-plugin-peer-deps-external": "^2.2.4",
-    "tslib": "^2.6.2",
     "ts-jest": "^29.1.1",
+    "tslib": "^2.6.2",
     "typescript": "^5.2.2"
   }
 }

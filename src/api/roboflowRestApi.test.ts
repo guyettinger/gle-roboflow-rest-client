@@ -9,6 +9,10 @@ import {
     WorkspaceResponse
 } from "./operations";
 import { JobResponse } from "./operations/jobs/jobsOperations.types";
+import {
+    DatasetUploadAnnotationResponse,
+    DatasetUploadImageResponse
+} from "./operations/dataset/datasetOperations.types";
 
 const apiKey = ''
 const workspaceId = 'guy-ettinger-c9esn'
@@ -16,6 +20,37 @@ const projectId = 'hard-hat-sample-w8nmd'
 const versionId = "2"
 const exportId = "voc"
 const jobId = "DYrtPC8aXUJMlWqPW5Kh"
+const imageDataUrl = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg=="
+const imageName = "image.png"
+const imageId = "IKlodUb6OjBLEx67gdnC"
+const annotationName = "annotation"
+const annotationData =  "<annotation>" +
+    "<folder></folder>" +
+    "<filename>image_png</filename>" +
+    "<path>image_png</path>" +
+    "<source>" +
+    "<database>Unspecified</database>" +
+    "</source>" +
+    "<size>" +
+    "<width>5</width>" +
+    "<height>5</height>" +
+    "<depth>3</depth>" +
+    "</size>" +
+    "<segmented>0</segmented>" +
+    "<object>" +
+    "<name>helmet</name>" +
+    "<pose>Unspecified</pose>" +
+    "<truncated>0</truncated>" +
+    "<difficult>0</difficult>" +
+    "<occluded>0</occluded>" +
+    "<bndbox>" +
+    "<xmin>0</xmin>" +
+    "<xmax>5</xmax>" +
+    "<ymin>0</ymin>" +
+    "<ymax>5</ymax>" +
+    "</bndbox>" +
+    "</object>" +
+    "</annotation>"
 const roboflowRestApi = new RoboflowRestApi('https://api.roboflow.com', apiKey)
 
 describe('Roboflow Rest API', () => {
@@ -79,6 +114,29 @@ describe('Roboflow Rest API', () => {
         roboflowRestApi.getJob(workspaceId, projectId, jobId).then((jobResponse: JobResponse) => {
             console.log(JSON.stringify(jobResponse, null, 2))
             expect(jobResponse).not.toBeNull()
+            done()
+        })
+    })
+
+    test('Should upload Image', (done) => {
+        fetch(imageDataUrl).then((r) => {
+            r.blob().then((imageBlob) => {
+                roboflowRestApi.uploadImage(projectId, imageName, imageBlob).then((datasetUploadImageResponse: DatasetUploadImageResponse) => {
+                    console.log(JSON.stringify(datasetUploadImageResponse, null, 2))
+                    expect(datasetUploadImageResponse).not.toBeNull()
+                    done()
+                })
+            })
+        })
+    })
+
+    test('Should upload Annotation', (done) => {
+        roboflowRestApi.uploadAnnotation(projectId, imageId, annotationName, annotationData).then((datasetUploadAnnotationResponse: DatasetUploadAnnotationResponse) => {
+            console.log(JSON.stringify(datasetUploadAnnotationResponse, null, 2))
+            expect(datasetUploadAnnotationResponse).not.toBeNull()
+            done()
+        }).catch((reason) => {
+            console.log(JSON.stringify(reason, null, 2))
             done()
         })
     })
