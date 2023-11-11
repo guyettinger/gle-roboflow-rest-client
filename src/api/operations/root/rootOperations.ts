@@ -5,7 +5,7 @@ export class RootOperations extends OperationsModel {
     private _rootOperationRoute = '/'
 
     constructor(operationsConfiguration: OperationsConfigurationModel) {
-        super(operationsConfiguration);
+        super(operationsConfiguration)
     }
 
     async getRoot(): Promise<RootResponse> {

@@ -8,13 +8,13 @@ export class WorkspaceOperations extends OperationsModel {
         super(operationsConfiguration)
     }
 
-    private createWorkspaceOperationRoute(workspaceId: string): string {
+    private getWorkspaceOperationRoute(workspaceId: string): string {
         return `${this._workspaceOperationRoute}${workspaceId}`
     }
 
     async getWorkspace(workspaceId: string): Promise<WorkspaceResponse> {
         try {
-            const workspaceUrl = this.createWorkspaceOperationRoute(workspaceId)
+            const workspaceUrl = this.getWorkspaceOperationRoute(workspaceId)
             const response = await this.client.get<WorkspaceResponse>(workspaceUrl)
             const workspaceResponse = response.data
             return workspaceResponse

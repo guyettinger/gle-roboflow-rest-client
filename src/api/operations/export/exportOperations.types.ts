@@ -1,7 +1,12 @@
-import { ExportInformation, ProjectInformation, VersionInformation, WorkspaceInformation } from "../../types";
+import {
+    ExportInformation,
+    ProjectInformation,
+    VersionInformation,
+    WorkspaceSummaryInformation
+} from "../../types";
 
 export interface ExportResponse {
-    workspace: WorkspaceInformation
+    workspace: WorkspaceSummaryInformation
     project: ProjectInformation
     version: VersionInformation
     export: ExportInformation

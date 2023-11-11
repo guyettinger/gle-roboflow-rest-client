@@ -1,5 +1,7 @@
 export * from './root'
 export * from './workspace'
 export * from './project'
+export * from './batches'
+export * from './jobs'
 export * from './version'
 export * from './export'
