@@ -2,7 +2,7 @@ import { describe, expect, test } from '@jest/globals';
 import { RoboflowRestApi } from "./roboflowRestApi";
 import { ExportResponse, ProjectResponse, RootResponse, VersionResponse, WorkspaceResponse } from "./operations";
 
-const apiKey = 'SMUEAzhWyFNwkcr1qa58'
+const apiKey = ''
 const workspaceId = 'alex-hyams-cosqx'
 const projectId = 'cash-counter'
 const versionId = "11"
