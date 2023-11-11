@@ -1,0 +1,1 @@
+export { type IconInformation } from './iconInformation'

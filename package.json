@@ -1,0 +1,42 @@
+{
+  "name": "gle-roboflow-rest-client",
+  "version": "1.0.0",
+  "description": "GLE Roboflow Rest Client",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/types.d.ts",
+  "scripts": {
+    "build": "npm run clean && rollup -c --bundleConfigAsCjs",
+    "clean": "rimraf dist",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guyettinger/gle-roboflow-rest-client.git"
+  },
+  "author": "Guy Ettinger",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/guyettinger/gle-roboflow-rest-client/issues"
+  },
+  "homepage": "https://github.com/guyettinger/gle-roboflow-rest-client#readme",
+  "dependencies": {
+    "axios": "^1.6.1",
+    "class-transformer": "^0.5.1"
+  },
+  "devDependencies": {
+    "@jest/globals": "^29.7.0",
+    "@rollup/plugin-commonjs": "^25.0.4",
+    "@rollup/plugin-node-resolve": "^15.2.1",
+    "@rollup/plugin-terser": "^0.4.3",
+    "@rollup/plugin-typescript": "^11.1.4",
+    "jest": "^29.7.0",
+    "rimraf": "^5.0.5",
+    "rollup": "^3.29.3",
+    "rollup-plugin-dts": "^6.0.2",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "tslib": "^2.6.2",
+    "ts-jest": "^29.1.1",
+    "typescript": "^5.2.2"
+  }
+}

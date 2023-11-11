@@ -1,0 +1,1 @@
+export {type WorkspaceInformation} from './workspaceInformation'
