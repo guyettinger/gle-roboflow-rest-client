@@ -22,8 +22,7 @@
   "homepage": "https://github.com/guyettinger/gle-roboflow-rest-client#readme",
   "dependencies": {
     "axios": "^1.6.1",
-    "class-transformer": "^0.5.1",
-    "form-data": "^4.0.0"
+    "class-transformer": "^0.5.1"
   },
   "devDependencies": {
     "@jest/globals": "^29.7.0",
