@@ -1,4 +1,4 @@
-import { ApiModel } from "../models";
+import { ApiModel } from "../core";
 import {
     AnnotationOperations,
     BatchResponse,

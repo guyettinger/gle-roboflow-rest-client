@@ -1,4 +1,4 @@
-import { OperationsConfigurationModel, OperationsModel } from "../../../models";
+import { OperationsConfigurationModel, OperationsModel } from "../../../core";
 import { JobsResponse, JobResponse } from "./jobsOperations.types";
 
 export class JobsOperations extends OperationsModel {

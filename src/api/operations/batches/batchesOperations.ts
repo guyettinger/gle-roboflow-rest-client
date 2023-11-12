@@ -1,4 +1,4 @@
-import { OperationsConfigurationModel, OperationsModel } from "../../../models";
+import { OperationsConfigurationModel, OperationsModel } from "../../../core";
 import { BatchesResponse, BatchResponse } from "./batchesOperations.types";
 
 export class BatchesOperations extends OperationsModel {

@@ -1,4 +1,4 @@
-import { OperationsConfigurationModel, OperationsModel } from "../../../models";
+import { OperationsConfigurationModel, OperationsModel } from "../../../core";
 import { ProjectResponse } from "./projectOperations.types";
 import { ProjectCreationInformation } from "../../types";
 
