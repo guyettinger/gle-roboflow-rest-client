@@ -14,7 +14,11 @@ import { ExportResponse, ExportOperations } from "./operations/export";
 import { BatchResponse } from "./operations/batches/batchesOperations.types";
 import { JobResponse } from "./operations/jobs/jobsOperations.types";
 import { ProjectCreationInformation } from "./types";
-import { DatasetOperations, DatasetUploadAnnotationResponse } from "./operations/dataset";
+import {
+    DatasetOperations,
+    DatasetUploadAnnotationOptions,
+    DatasetUploadAnnotationResponse
+} from "./operations/dataset";
 import { DatasetUploadImageOptions, DatasetUploadImageResponse } from "./operations/dataset/datasetOperations.types";
 
 export class RoboflowRestApi extends ApiModel {
@@ -90,7 +94,7 @@ export class RoboflowRestApi extends ApiModel {
         return this.datasetOperations.uploadImage(projectId, imageFileName, imageFile, options)
     }
 
-    async uploadAnnotation(projectId: string, imageId: string, annotationName: string, annotationData: string): Promise<DatasetUploadAnnotationResponse> {
-        return this.datasetOperations.uploadAnnotation(projectId, imageId, annotationData, annotationData)
+    async uploadAnnotation(projectId: string, imageId: string, annotationName: string, annotationData: string, options?: DatasetUploadAnnotationOptions): Promise<DatasetUploadAnnotationResponse> {
+        return this.datasetOperations.uploadAnnotation(projectId, imageId, annotationName, annotationData, options)
     }
 }

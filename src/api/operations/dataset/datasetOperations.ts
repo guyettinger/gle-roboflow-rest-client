@@ -1,9 +1,11 @@
 import { OperationsConfigurationModel, OperationsModel } from "../../../models";
 import {
+    DatasetUploadAnnotationOptions,
     DatasetUploadAnnotationResponse,
     DatasetUploadImageOptions,
     DatasetUploadImageResponse
 } from "./datasetOperations.types";
+import { AxiosRequestConfig } from "axios";
 
 export class DatasetOperations extends OperationsModel {
     private _datasetOperationRoute = '/'
@@ -51,20 +53,27 @@ export class DatasetOperations extends OperationsModel {
         }
     }
 
-    async uploadAnnotation(projectId: string, imageId: string, annotationName: string, annotationData: string): Promise<DatasetUploadAnnotationResponse> {
+    async uploadAnnotation(projectId: string, imageId: string, annotationName: string, annotationData: string, options?: DatasetUploadAnnotationOptions): Promise<DatasetUploadAnnotationResponse> {
         try {
             const uploadAnnotationUrl = this.getDatasetOperationAnnotationUploadRoute(projectId, imageId)
+            let uploadAnnotationRequestConfig: AxiosRequestConfig<DatasetUploadAnnotationResponse> = {
+                params: {
+                    name: annotationName
+                },
+                headers: {
+                    "Content-Type": "text/plain"
+                }
+            }
+
+            if (options?.overwrite) {
+                uploadAnnotationRequestConfig.params.overwrite = options.overwrite
+            }
+
             const response = await this.client.post<DatasetUploadAnnotationResponse>(
                 uploadAnnotationUrl,
                 annotationData,
-                {
-                    params: {
-                        name: annotationName
-                    },
-                    headers: {
-                        "Content-Type": "text/plain"
-                    }
-                });
+                uploadAnnotationRequestConfig
+            )
             const datasetUploadAnnotationResponse = response.data
             return datasetUploadAnnotationResponse
         } catch (error) {

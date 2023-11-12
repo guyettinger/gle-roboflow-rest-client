@@ -23,33 +23,34 @@ const jobId = "DYrtPC8aXUJMlWqPW5Kh"
 const imageDataUrl = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg=="
 const imageName = "image.png"
 const imageId = "IKlodUb6OjBLEx67gdnC"
-const annotationName = "annotation"
-const annotationData =  "<annotation>" +
-    "<folder></folder>" +
-    "<filename>image_png</filename>" +
-    "<path>image_png</path>" +
-    "<source>" +
-    "<database>Unspecified</database>" +
-    "</source>" +
-    "<size>" +
-    "<width>5</width>" +
-    "<height>5</height>" +
-    "<depth>3</depth>" +
-    "</size>" +
-    "<segmented>0</segmented>" +
-    "<object>" +
-    "<name>helmet</name>" +
-    "<pose>Unspecified</pose>" +
-    "<truncated>0</truncated>" +
-    "<difficult>0</difficult>" +
-    "<occluded>0</occluded>" +
-    "<bndbox>" +
-    "<xmin>0</xmin>" +
-    "<xmax>5</xmax>" +
-    "<ymin>0</ymin>" +
-    "<ymax>5</ymax>" +
-    "</bndbox>" +
-    "</object>" +
+const annotationName = "annotation.xml"
+const annotationData =
+    "<annotation>" +
+        "<folder></folder>" +
+        "<filename>image.png</filename>" +
+        "<path>image.png</path>" +
+        "<source>" +
+            "<database>Unspecified</database>" +
+        "</source>" +
+        "<size>" +
+            "<width>5</width>" +
+            "<height>5</height>" +
+            "<depth>3</depth>" +
+        "</size>" +
+        "<segmented>0</segmented>" +
+        "<object>" +
+            "<name>helmet</name>" +
+            "<pose>Unspecified</pose>" +
+            "<truncated>0</truncated>" +
+            "<difficult>0</difficult>" +
+            "<occluded>0</occluded>" +
+            "<bndbox>" +
+                "<xmin>1</xmin>" +
+                "<xmax>4</xmax>" +
+                "<ymin>1</ymin>" +
+                "<ymax>4</ymax>" +
+             "</bndbox>" +
+         "</object>" +
     "</annotation>"
 const roboflowRestApi = new RoboflowRestApi('https://api.roboflow.com', apiKey)
 
@@ -131,7 +132,7 @@ describe('Roboflow Rest API', () => {
     })
 
     test('Should upload Annotation', (done) => {
-        roboflowRestApi.uploadAnnotation(projectId, imageId, annotationName, annotationData).then((datasetUploadAnnotationResponse: DatasetUploadAnnotationResponse) => {
+        roboflowRestApi.uploadAnnotation(projectId, imageId, annotationName, annotationData, {overwrite: true}).then((datasetUploadAnnotationResponse: DatasetUploadAnnotationResponse) => {
             console.log(JSON.stringify(datasetUploadAnnotationResponse, null, 2))
             expect(datasetUploadAnnotationResponse).not.toBeNull()
             done()
