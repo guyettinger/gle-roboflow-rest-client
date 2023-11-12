@@ -2,14 +2,13 @@ import { OperationsConfigurationModel, OperationsModel } from "../../../core";
 import { ExportResponse } from "./exportOperations.types";
 
 export class ExportOperations extends OperationsModel {
-    private _exportOperationRoute = '/'
 
     constructor(operationsConfiguration: OperationsConfigurationModel) {
         super(operationsConfiguration)
     }
 
     private getExportOperationRoute(workspaceId: string, projectId: string, versionId: string, exportId: string): string {
-        return `${this._exportOperationRoute}${workspaceId}/${projectId}/${versionId}/${exportId}`
+        return `${this.basePath}${workspaceId}/${projectId}/${versionId}/${exportId}`
     }
 
     async getExport(workspaceId: string, projectId: string, versionId: string, exportId: string): Promise<ExportResponse> {

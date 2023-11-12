@@ -2,18 +2,17 @@ import { OperationsConfigurationModel, OperationsModel } from "../../../core";
 import { BatchesResponse, BatchResponse } from "./batchesOperations.types";
 
 export class BatchesOperations extends OperationsModel {
-    private _batchesOperationRoute = '/'
 
     constructor(operationsConfiguration: OperationsConfigurationModel) {
         super(operationsConfiguration)
     }
 
     private getBatchesOperationRoute(workspaceId: string, projectId: string): string {
-        return `${this._batchesOperationRoute}${workspaceId}/${projectId}/batches`
+        return `${this.basePath}${workspaceId}/${projectId}/batches`
     }
 
     private getBatchOperationRoute(workspaceId: string, projectId: string, batchId: string): string {
-        return `${this._batchesOperationRoute}${workspaceId}/${projectId}/batches/${batchId}`
+        return `${this.basePath}${workspaceId}/${projectId}/batches/${batchId}`
     }
 
     async getBatches(workspaceId: string, projectId: string): Promise<BatchesResponse> {

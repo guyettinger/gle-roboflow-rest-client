@@ -2,14 +2,13 @@ import { OperationsConfigurationModel, OperationsModel } from "../../../core";
 import { VersionResponse } from "./versionOperations.types";
 
 export class VersionOperations extends OperationsModel {
-    private _versionOperationRoute = '/'
 
     constructor(operationsConfiguration: OperationsConfigurationModel) {
         super(operationsConfiguration)
     }
 
     private getVersionOperationRoute(workspaceId: string, projectId: string, versionId: string): string {
-        return `${this._versionOperationRoute}${workspaceId}/${projectId}/${versionId}`
+        return `${this.basePath}${workspaceId}/${projectId}/${versionId}`
     }
 
     async getVersion(workspaceId: string, projectId: string, versionId: string): Promise<VersionResponse> {

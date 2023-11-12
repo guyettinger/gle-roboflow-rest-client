@@ -5,14 +5,13 @@ import {
 } from "./searchOperations.types";
 
 export class SearchOperations extends OperationsModel {
-    private _searchOperationRoute = '/'
 
     constructor(operationsConfiguration: OperationsConfigurationModel) {
         super(operationsConfiguration)
     }
 
     private getSearchOperationRoute(workspaceId: string, projectId: string): string {
-        return `${this._searchOperationRoute}${workspaceId}/${projectId}/search`
+        return `${this.basePath}${workspaceId}/${projectId}/search`
     }
 
     async search(workspaceId: string, projectId: string, searchOptions: SearchOptions): Promise<SearchResponse> {

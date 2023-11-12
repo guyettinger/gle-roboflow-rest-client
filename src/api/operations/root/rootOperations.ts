@@ -2,7 +2,6 @@ import { OperationsConfigurationModel, OperationsModel } from "../../../core";
 import { RootResponse } from "./rootOperations.types";
 
 export class RootOperations extends OperationsModel {
-    private _rootOperationRoute = '/'
 
     constructor(operationsConfiguration: OperationsConfigurationModel) {
         super(operationsConfiguration)
@@ -10,7 +9,7 @@ export class RootOperations extends OperationsModel {
 
     async getRoot(): Promise<RootResponse> {
         try {
-            const response = await this.client.get<RootResponse>(this._rootOperationRoute)
+            const response = await this.client.get<RootResponse>(this.basePath)
             const rootResponse = response.data
             return rootResponse
         } catch (error) {

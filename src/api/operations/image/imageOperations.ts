@@ -5,14 +5,13 @@ import {
 } from "./imageOperations.types";
 
 export class ImageOperations extends OperationsModel {
-    private _imageOperationRoute = '/'
 
     constructor(operationsConfiguration: OperationsConfigurationModel) {
         super(operationsConfiguration)
     }
 
     private getProjectDatasetOperationRoute(projectId: string): string {
-        return `${this._imageOperationRoute}dataset/${projectId}`
+        return `${this.basePath}dataset/${projectId}`
     }
 
     private getProjectImageUploadRoute(projectId: string): string {

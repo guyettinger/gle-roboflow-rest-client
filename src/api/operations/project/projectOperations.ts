@@ -3,18 +3,17 @@ import { ProjectResponse } from "./projectOperations.types";
 import { ProjectCreationInformation } from "../../types";
 
 export class ProjectOperations extends OperationsModel {
-    private _projectOperationRoute = '/'
 
     constructor(operationsConfiguration: OperationsConfigurationModel) {
         super(operationsConfiguration)
     }
 
     private getProjectOperationRoute(workspaceId: string, projectId: string): string {
-        return `${this._projectOperationRoute}${workspaceId}/${projectId}`
+        return `${this.basePath}${workspaceId}/${projectId}`
     }
 
     private getProjectsOperationRoute(workspaceId: string): string {
-        return `${this._projectOperationRoute}${workspaceId}/projects`
+        return `${this.basePath}${workspaceId}/projects`
     }
 
     async getProject(workspaceId: string, projectId: string): Promise<ProjectResponse> {

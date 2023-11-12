@@ -5,14 +5,13 @@ import {
 } from "./tagOperations.types";
 
 export class TagOperations extends OperationsModel {
-    private _tagOperationRoute = '/'
 
     constructor(operationsConfiguration: OperationsConfigurationModel) {
         super(operationsConfiguration)
     }
 
     private getTagOperationRoute(workspaceId: string, projectId: string, imageId: string): string {
-        return `${this._tagOperationRoute}${workspaceId}/${projectId}/images/${imageId}/tags`
+        return `${this.basePath}${workspaceId}/${projectId}/images/${imageId}/tags`
     }
 
     async tag(workspaceId: string, projectId: string, imageId: string, tagOptions: TagOptions): Promise<TagResponse> {

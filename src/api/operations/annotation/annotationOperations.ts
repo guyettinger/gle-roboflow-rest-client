@@ -6,14 +6,13 @@ import {
 import { AxiosRequestConfig } from "axios";
 
 export class AnnotationOperations extends OperationsModel {
-    private _annotationOperationRoute = '/'
 
     constructor(operationsConfiguration: OperationsConfigurationModel) {
         super(operationsConfiguration)
     }
 
     private getProjectDatasetOperationRoute(projectId: string): string {
-        return `${this._annotationOperationRoute}dataset/${projectId}`
+        return `${this.basePath}dataset/${projectId}`
     }
 
     private getProjectAnnotationUploadRoute(projectId: string, imageId: string): string {

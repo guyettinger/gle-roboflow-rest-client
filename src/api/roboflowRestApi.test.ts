@@ -150,7 +150,7 @@ describe('Roboflow Rest API', () => {
         })
     })
 
-    test('Should search', (done) => {
+    test('Should Search', (done) => {
         const searchOptions: SearchOptions = {
             in_dataset: true,
             limit: 125,

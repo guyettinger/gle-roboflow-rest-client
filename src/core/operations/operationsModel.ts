@@ -1,6 +1,6 @@
 import { AxiosInstance } from 'axios';
 import { OperationsConfigurationModel } from './operationsConfigurationModel';
-import { ApiErrorModel } from '../errors/apiErrorModel';
+import { ApiErrorModel } from '../errors';
 
 export class OperationsModel {
     protected operationsConfiguration: OperationsConfigurationModel;
@@ -11,6 +11,10 @@ export class OperationsModel {
 
     protected get client(): AxiosInstance {
         return this.operationsConfiguration.client;
+    }
+
+    protected get basePath(): string {
+        return this.operationsConfiguration.basePath
     }
 
     protected createErrorModel(errorData: any): ApiErrorModel {

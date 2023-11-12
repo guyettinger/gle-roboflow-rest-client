@@ -2,14 +2,13 @@ import { OperationsConfigurationModel, OperationsModel } from "../../../core";
 import { WorkspaceResponse } from "./workspaceOperations.types";
 
 export class WorkspaceOperations extends OperationsModel {
-    private _workspaceOperationRoute = '/'
 
     constructor(operationsConfiguration: OperationsConfigurationModel) {
         super(operationsConfiguration)
     }
 
     private getWorkspaceOperationRoute(workspaceId: string): string {
-        return `${this._workspaceOperationRoute}${workspaceId}`
+        return `${this.basePath}${workspaceId}`
     }
 
     async getWorkspace(workspaceId: string): Promise<WorkspaceResponse> {

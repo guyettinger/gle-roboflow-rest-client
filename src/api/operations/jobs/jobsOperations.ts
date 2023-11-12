@@ -2,18 +2,17 @@ import { OperationsConfigurationModel, OperationsModel } from "../../../core";
 import { JobsResponse, JobResponse } from "./jobsOperations.types";
 
 export class JobsOperations extends OperationsModel {
-    private _jobsOperationRoute = '/'
 
     constructor(operationsConfiguration: OperationsConfigurationModel) {
         super(operationsConfiguration)
     }
 
     private getJobsOperationRoute(workspaceId: string, projectId: string): string {
-        return `${this._jobsOperationRoute}${workspaceId}/${projectId}/jobs`
+        return `${this.basePath}${workspaceId}/${projectId}/jobs`
     }
 
     private getJobOperationRoute(workspaceId: string, projectId: string, jobId: string): string {
-        return `${this._jobsOperationRoute}${workspaceId}/${projectId}/jobs/${jobId}`
+        return `${this.basePath}${workspaceId}/${projectId}/jobs/${jobId}`
     }
 
     async getJobs(workspaceId: string, projectId: string): Promise<JobsResponse> {
