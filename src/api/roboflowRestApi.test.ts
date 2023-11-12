@@ -13,45 +13,22 @@ import {
     DatasetUploadAnnotationResponse,
     DatasetUploadImageResponse
 } from "./operations/dataset/datasetOperations.types";
+import { RoboflowRestApiTestConfig } from "./roboflowRestApi.testconfig";
 
-const apiKey = ''
-const workspaceId = 'guy-ettinger-c9esn'
-const projectId = 'hard-hat-sample-w8nmd'
-const versionId = "2"
-const exportId = "voc"
-const jobId = "DYrtPC8aXUJMlWqPW5Kh"
-const imageDataUrl = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg=="
-const imageName = "image.png"
-const imageId = "IKlodUb6OjBLEx67gdnC"
-const annotationName = "annotation.xml"
-const annotationData =
-    "<annotation>" +
-        "<folder></folder>" +
-        "<filename>image.png</filename>" +
-        "<path>image.png</path>" +
-        "<source>" +
-            "<database>Unspecified</database>" +
-        "</source>" +
-        "<size>" +
-            "<width>5</width>" +
-            "<height>5</height>" +
-            "<depth>3</depth>" +
-        "</size>" +
-        "<segmented>0</segmented>" +
-        "<object>" +
-            "<name>helmet</name>" +
-            "<pose>Unspecified</pose>" +
-            "<truncated>0</truncated>" +
-            "<difficult>0</difficult>" +
-            "<occluded>0</occluded>" +
-            "<bndbox>" +
-                "<xmin>1</xmin>" +
-                "<xmax>4</xmax>" +
-                "<ymin>1</ymin>" +
-                "<ymax>4</ymax>" +
-             "</bndbox>" +
-         "</object>" +
-    "</annotation>"
+// test config
+const apiKey = RoboflowRestApiTestConfig.apiKey
+const workspaceId = RoboflowRestApiTestConfig.workspaceId
+const projectId = RoboflowRestApiTestConfig.projectId
+const versionId = RoboflowRestApiTestConfig.versionId
+const exportId = RoboflowRestApiTestConfig.exportId
+const jobId = RoboflowRestApiTestConfig.jobId
+const imageDataUrl = RoboflowRestApiTestConfig.imageDataUrl
+const imageName = RoboflowRestApiTestConfig.imageName
+const imageId = RoboflowRestApiTestConfig.imageId
+const annotationName = RoboflowRestApiTestConfig.annotationName
+const annotationData = RoboflowRestApiTestConfig.annotationData
+
+// test api
 const roboflowRestApi = new RoboflowRestApi('https://api.roboflow.com', apiKey)
 
 describe('Roboflow Rest API', () => {
