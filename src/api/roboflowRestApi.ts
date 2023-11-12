@@ -1,25 +1,29 @@
 import { ApiModel } from "../models";
 import {
-    RootResponse,
-    RootOperations,
+    AnnotationOperations,
+    BatchResponse,
     BatchesOperations,
     BatchesResponse,
+    ExportOperations,
+    ExportResponse,
+    ImageOperations,
+    JobResponse,
     JobsOperations,
-    JobsResponse
+    JobsResponse,
+    ProjectOperations,
+    ProjectResponse,
+    RootOperations,
+    RootResponse,
+    UploadAnnotationOptions,
+    UploadAnnotationResponse,
+    UploadImageOptions,
+    UploadImageResponse,
+    VersionOperations,
+    VersionResponse,
+    WorkspaceOperations,
+    WorkspaceResponse,
 } from "./operations";
-import { WorkspaceResponse, WorkspaceOperations } from "./operations/workspace";
-import { ProjectResponse, ProjectOperations } from "./operations/project";
-import { VersionResponse, VersionOperations } from "./operations/version";
-import { ExportResponse, ExportOperations } from "./operations/export";
-import { BatchResponse } from "./operations/batches/batchesOperations.types";
-import { JobResponse } from "./operations/jobs/jobsOperations.types";
 import { ProjectCreationInformation } from "./types";
-import {
-    DatasetOperations,
-    DatasetUploadAnnotationOptions,
-    DatasetUploadAnnotationResponse
-} from "./operations/dataset";
-import { DatasetUploadImageOptions, DatasetUploadImageResponse } from "./operations/dataset/datasetOperations.types";
 
 export class RoboflowRestApi extends ApiModel {
     constructor(baseUrl: string, apiKey: string) {
@@ -87,14 +91,17 @@ export class RoboflowRestApi extends ApiModel {
         return this.jobsOperations.getJobs(workspaceId, projectId)
     }
 
-    // dataset operations
-    private datasetOperations: DatasetOperations = new DatasetOperations(this.operationsConfiguration)
+    // image operations
+    private imageOperations: ImageOperations = new ImageOperations(this.operationsConfiguration)
 
-    async uploadImage(projectId: string, imageFileName: string, imageFile: Blob, options?: DatasetUploadImageOptions): Promise<DatasetUploadImageResponse> {
-        return this.datasetOperations.uploadImage(projectId, imageFileName, imageFile, options)
+    async uploadImage(projectId: string, imageFileName: string, imageFile: Blob, options?: UploadImageOptions): Promise<UploadImageResponse> {
+        return this.imageOperations.uploadImage(projectId, imageFileName, imageFile, options)
     }
 
-    async uploadAnnotation(projectId: string, imageId: string, annotationName: string, annotationData: string, options?: DatasetUploadAnnotationOptions): Promise<DatasetUploadAnnotationResponse> {
-        return this.datasetOperations.uploadAnnotation(projectId, imageId, annotationName, annotationData, options)
+    // annotation operations
+    private annotationOperations: AnnotationOperations = new AnnotationOperations(this.operationsConfiguration)
+
+    async uploadAnnotation(projectId: string, imageId: string, annotationName: string, annotationData: string, options?: UploadAnnotationOptions): Promise<UploadAnnotationResponse> {
+        return this.annotationOperations.uploadAnnotation(projectId, imageId, annotationName, annotationData, options)
     }
 }

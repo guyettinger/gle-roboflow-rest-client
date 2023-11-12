@@ -2,17 +2,16 @@ import { describe, expect, test } from '@jest/globals';
 import { RoboflowRestApi } from "./roboflowRestApi";
 import {
     BatchesResponse,
-    ExportResponse, JobsResponse,
+    ExportResponse,
+    JobResponse,
+    JobsResponse,
     ProjectResponse,
     RootResponse,
+    UploadAnnotationResponse,
+    UploadImageResponse,
     VersionResponse,
-    WorkspaceResponse
+    WorkspaceResponse,
 } from "./operations";
-import { JobResponse } from "./operations/jobs/jobsOperations.types";
-import {
-    DatasetUploadAnnotationResponse,
-    DatasetUploadImageResponse
-} from "./operations/dataset/datasetOperations.types";
 import { RoboflowRestApiTestConfig } from "./roboflowRestApi.testconfig";
 
 // test config
@@ -99,7 +98,7 @@ describe('Roboflow Rest API', () => {
     test('Should upload Image', (done) => {
         fetch(imageDataUrl).then((r) => {
             r.blob().then((imageBlob) => {
-                roboflowRestApi.uploadImage(projectId, imageName, imageBlob).then((datasetUploadImageResponse: DatasetUploadImageResponse) => {
+                roboflowRestApi.uploadImage(projectId, imageName, imageBlob).then((datasetUploadImageResponse: UploadImageResponse) => {
                     console.log(JSON.stringify(datasetUploadImageResponse, null, 2))
                     expect(datasetUploadImageResponse).not.toBeNull()
                     done()
@@ -109,7 +108,7 @@ describe('Roboflow Rest API', () => {
     })
 
     test('Should upload Annotation', (done) => {
-        roboflowRestApi.uploadAnnotation(projectId, imageId, annotationName, annotationData, {overwrite: true}).then((datasetUploadAnnotationResponse: DatasetUploadAnnotationResponse) => {
+        roboflowRestApi.uploadAnnotation(projectId, imageId, annotationName, annotationData, {overwrite: true}).then((datasetUploadAnnotationResponse: UploadAnnotationResponse) => {
             console.log(JSON.stringify(datasetUploadAnnotationResponse, null, 2))
             expect(datasetUploadAnnotationResponse).not.toBeNull()
             done()
