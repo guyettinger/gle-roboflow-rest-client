@@ -6,7 +6,7 @@ import {
     JobResponse,
     JobsResponse,
     ProjectResponse,
-    RootResponse,
+    RootResponse, SearchOptions, SearchResponse,
     UploadAnnotationResponse,
     UploadImageResponse,
     VersionResponse,
@@ -114,6 +114,19 @@ describe('Roboflow Rest API', () => {
             done()
         }).catch((reason) => {
             console.log(JSON.stringify(reason, null, 2))
+            done()
+        })
+    })
+
+    test('Should get search', (done) => {
+        const searchOptions: SearchOptions = {
+            in_dataset: true,
+            limit: 125,
+            fields: ["id", "name", "annotations", "labels", "split", "tags", "owner", "embedding", "created"]
+        }
+        roboflowRestApi.search(workspaceId, projectId, searchOptions).then((searchResponse: SearchResponse) => {
+            console.log(JSON.stringify(searchResponse, null, 2))
+            expect(searchResponse).not.toBeNull()
             done()
         })
     })

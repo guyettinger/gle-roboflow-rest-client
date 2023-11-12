@@ -22,6 +22,9 @@ import {
     VersionResponse,
     WorkspaceOperations,
     WorkspaceResponse,
+    SearchOperations,
+    SearchOptions,
+    SearchResponse
 } from "./operations";
 import { ProjectCreationInformation } from "./types";
 
@@ -103,5 +106,12 @@ export class RoboflowRestApi extends ApiModel {
 
     async uploadAnnotation(projectId: string, imageId: string, annotationName: string, annotationData: string, options?: UploadAnnotationOptions): Promise<UploadAnnotationResponse> {
         return this.annotationOperations.uploadAnnotation(projectId, imageId, annotationName, annotationData, options)
+    }
+
+    // search operations
+    private searchOperations: SearchOperations = new SearchOperations(this.operationsConfiguration)
+
+    async search(workspaceId: string, projectId: string, searchOptions: SearchOptions):Promise<SearchResponse>{
+        return this.searchOperations.search(workspaceId, projectId, searchOptions)
     }
 }
