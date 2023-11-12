@@ -33,7 +33,7 @@ const annotationName = RoboflowRestApiTestConfig.annotationName
 const annotationData = RoboflowRestApiTestConfig.annotationData
 
 // test api
-const roboflowRestApi = new RoboflowRestApi('https://api.roboflow.com', apiKey)
+const roboflowRestApi = new RoboflowRestApi(apiKey)
 
 describe('Roboflow Rest API', () => {
     test('Should get Root', (done) => {

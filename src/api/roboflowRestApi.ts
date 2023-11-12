@@ -1,4 +1,4 @@
-import { ApiModel } from "../core";
+import { ApiModel, OperationsConfigurationModel } from "../core";
 import {
     AnnotationOperations,
     BatchResponse,
@@ -27,10 +27,18 @@ import {
     SearchResponse, TagOperations, TagOptions, TagResponse
 } from "./operations";
 import { ProjectCreationInformation } from "./types";
+import { ObjectDetectionOperations, ObjectDetectionResponse } from "./operations/objectDetection";
 
 export class RoboflowRestApi extends ApiModel {
-    constructor(baseUrl: string, apiKey: string) {
-        super(baseUrl, apiKey)
+    constructor(
+        apiKey: string,
+        apiUrl: string = 'https://api.roboflow.com',
+        public detectUrl = 'https://detect.roboflow.com',
+        public classifyUrl = 'https://classify.roboflow.com',
+        public outlineUrl = 'https://outline.roboflow.com',
+        public segmentUrl = 'https://segment.roboflow.com',
+    ) {
+        super(apiUrl, apiKey)
     }
 
     // root operations
@@ -120,5 +128,12 @@ export class RoboflowRestApi extends ApiModel {
 
     async tag(workspaceId: string, projectId: string, imageId: string, tagOptions: TagOptions): Promise<TagResponse> {
         return this.tagOperations.tag(workspaceId, projectId, imageId, tagOptions)
+    }
+
+    // object detection operations
+    private objectDetectionOperations: ObjectDetectionOperations = new ObjectDetectionOperations(this.operationsConfiguration, this.detectUrl)
+
+    async detect(modelId: string, modelVersion: string, imageBlob: Blob): Promise<ObjectDetectionResponse> {
+        return this.objectDetectionOperations.objectDetectionOnBlob(modelId, modelVersion, imageBlob)
     }
 }
