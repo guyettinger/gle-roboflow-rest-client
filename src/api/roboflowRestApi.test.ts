@@ -6,7 +6,11 @@ import {
     JobResponse,
     JobsResponse,
     ProjectResponse,
-    RootResponse, SearchOptions, SearchResponse,
+    RootResponse,
+    SearchOptions,
+    SearchResponse,
+    TagOperationTypes, TagOptions,
+    TagResponse,
     UploadAnnotationResponse,
     UploadImageResponse,
     VersionResponse,
@@ -118,7 +122,7 @@ describe('Roboflow Rest API', () => {
         })
     })
 
-    test('Should get search', (done) => {
+    test('Should search', (done) => {
         const searchOptions: SearchOptions = {
             in_dataset: true,
             limit: 125,
@@ -127,6 +131,36 @@ describe('Roboflow Rest API', () => {
         roboflowRestApi.search(workspaceId, projectId, searchOptions).then((searchResponse: SearchResponse) => {
             console.log(JSON.stringify(searchResponse, null, 2))
             expect(searchResponse).not.toBeNull()
+            done()
+        })
+    })
+
+    test('Should add Tag', (done) => {
+        const tagOptions: TagOptions = {
+            operation: TagOperationTypes.Add,
+            tags: ["test-tag"]
+        }
+        roboflowRestApi.tag(workspaceId, projectId, imageId, tagOptions).then((tagResponse: TagResponse) => {
+            console.log(JSON.stringify(tagResponse, null, 2))
+            expect(tagResponse).not.toBeNull()
+            done()
+        }).catch((reason) => {
+            console.log(JSON.stringify(reason, null, 2))
+            done()
+        })
+    })
+
+    test('Should remove Tag', (done) => {
+        const tagOptions: TagOptions = {
+            operation: TagOperationTypes.Remove,
+            tags: ["test-tag"]
+        }
+        roboflowRestApi.tag(workspaceId, projectId, imageId, tagOptions).then((tagResponse: TagResponse) => {
+            console.log(JSON.stringify(tagResponse, null, 2))
+            expect(tagResponse).not.toBeNull()
+            done()
+        }).catch((reason) => {
+            console.log(JSON.stringify(reason, null, 2))
             done()
         })
     })

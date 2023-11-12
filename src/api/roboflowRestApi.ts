@@ -24,7 +24,7 @@ import {
     WorkspaceResponse,
     SearchOperations,
     SearchOptions,
-    SearchResponse
+    SearchResponse, TagOperations, TagOptions, TagResponse
 } from "./operations";
 import { ProjectCreationInformation } from "./types";
 
@@ -111,7 +111,14 @@ export class RoboflowRestApi extends ApiModel {
     // search operations
     private searchOperations: SearchOperations = new SearchOperations(this.operationsConfiguration)
 
-    async search(workspaceId: string, projectId: string, searchOptions: SearchOptions):Promise<SearchResponse>{
+    async search(workspaceId: string, projectId: string, searchOptions: SearchOptions): Promise<SearchResponse> {
         return this.searchOperations.search(workspaceId, projectId, searchOptions)
+    }
+
+    // tag operations
+    private tagOperations: TagOperations = new TagOperations(this.operationsConfiguration)
+
+    async tag(workspaceId: string, projectId: string, imageId: string, tagOptions: TagOptions): Promise<TagResponse> {
+        return this.tagOperations.tag(workspaceId, projectId, imageId, tagOptions)
     }
 }
