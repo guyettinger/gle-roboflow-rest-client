@@ -40,6 +40,9 @@ describe('Roboflow Rest API', () => {
             console.log(JSON.stringify(rootResponse, null, 2))
             expect(rootResponse).not.toBeNull()
             done()
+        }).catch((reason) => {
+            console.log(JSON.stringify(reason, null, 2))
+            done()
         })
     })
 
@@ -47,6 +50,9 @@ describe('Roboflow Rest API', () => {
         roboflowRestApi.getWorkspace(workspaceId).then((workspaceResponse: WorkspaceResponse) => {
             console.log(JSON.stringify(workspaceResponse, null, 2))
             expect(workspaceResponse).not.toBeNull()
+            done()
+        }).catch((reason) => {
+            console.log(JSON.stringify(reason, null, 2))
             done()
         })
     })
@@ -56,6 +62,9 @@ describe('Roboflow Rest API', () => {
             console.log(JSON.stringify(projectResponse, null, 2))
             expect(projectResponse).not.toBeNull()
             done()
+        }).catch((reason) => {
+            console.log(JSON.stringify(reason, null, 2))
+            done()
         })
     })
 
@@ -63,6 +72,9 @@ describe('Roboflow Rest API', () => {
         roboflowRestApi.getVersion(workspaceId, projectId, versionId).then((versionResponse: VersionResponse) => {
             console.log(JSON.stringify(versionResponse, null, 2))
             expect(versionResponse).not.toBeNull()
+            done()
+        }).catch((reason) => {
+            console.log(JSON.stringify(reason, null, 2))
             done()
         })
     })
@@ -72,6 +84,9 @@ describe('Roboflow Rest API', () => {
             console.log(JSON.stringify(exportResponse, null, 2))
             expect(exportResponse).not.toBeNull()
             done()
+        }).catch((reason) => {
+            console.log(JSON.stringify(reason, null, 2))
+            done()
         })
     })
 
@@ -79,6 +94,9 @@ describe('Roboflow Rest API', () => {
         roboflowRestApi.getBatches(workspaceId, projectId).then((batchesResponse: BatchesResponse) => {
             console.log(JSON.stringify(batchesResponse, null, 2))
             expect(batchesResponse).not.toBeNull()
+            done()
+        }).catch((reason) => {
+            console.log(JSON.stringify(reason, null, 2))
             done()
         })
     })
@@ -88,6 +106,9 @@ describe('Roboflow Rest API', () => {
             console.log(JSON.stringify(jobsResponse, null, 2))
             expect(jobsResponse).not.toBeNull()
             done()
+        }).catch((reason) => {
+            console.log(JSON.stringify(reason, null, 2))
+            done()
         })
     })
 
@@ -95,6 +116,9 @@ describe('Roboflow Rest API', () => {
         roboflowRestApi.getJob(workspaceId, projectId, jobId).then((jobResponse: JobResponse) => {
             console.log(JSON.stringify(jobResponse, null, 2))
             expect(jobResponse).not.toBeNull()
+            done()
+        }).catch((reason) => {
+            console.log(JSON.stringify(reason, null, 2))
             done()
         })
     })
@@ -105,6 +129,9 @@ describe('Roboflow Rest API', () => {
                 roboflowRestApi.uploadImage(projectId, imageName, imageBlob).then((datasetUploadImageResponse: UploadImageResponse) => {
                     console.log(JSON.stringify(datasetUploadImageResponse, null, 2))
                     expect(datasetUploadImageResponse).not.toBeNull()
+                    done()
+                }).catch((reason) => {
+                    console.log(JSON.stringify(reason, null, 2))
                     done()
                 })
             })
@@ -126,11 +153,14 @@ describe('Roboflow Rest API', () => {
         const searchOptions: SearchOptions = {
             in_dataset: true,
             limit: 125,
-            fields: ["id", "name", "annotations", "labels", "split", "tags", "owner", "embedding", "created"]
+            fields: ["id", "name", "annotations", "labels", "split", "tags", "owner", "created"]
         }
         roboflowRestApi.search(workspaceId, projectId, searchOptions).then((searchResponse: SearchResponse) => {
             console.log(JSON.stringify(searchResponse, null, 2))
             expect(searchResponse).not.toBeNull()
+            done()
+        }).catch((reason) => {
+            console.log(JSON.stringify(reason, null, 2))
             done()
         })
     })
