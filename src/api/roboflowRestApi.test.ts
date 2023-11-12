@@ -18,6 +18,8 @@ import {
     WorkspaceResponse,
 } from "./operations";
 import { RoboflowRestApiTestConfig } from "./roboflowRestApi.testconfig";
+import { ObjectDetectionResponse } from "./operations/objectDetection";
+import { BlobUtilities } from "../core";
 
 // test config
 const apiKey = RoboflowRestApiTestConfig.apiKey
@@ -125,17 +127,14 @@ describe('Roboflow Rest API', () => {
     })
 
     test('Should upload Image', (done) => {
-        fetch(imageDataUrl).then((r) => {
-            r.blob().then((imageBlob) => {
-                roboflowRestApi.uploadImage(projectId, imageName, imageBlob).then((datasetUploadImageResponse: UploadImageResponse) => {
-                    console.log(JSON.stringify(datasetUploadImageResponse, null, 2))
-                    expect(datasetUploadImageResponse).not.toBeNull()
-                    done()
-                }).catch((reason) => {
-                    console.log(JSON.stringify(reason, null, 2))
-                    done()
-                })
-            })
+        const imageBlob = BlobUtilities.dataURItoBlob(imageDataUrl)
+        roboflowRestApi.uploadImage(projectId, imageName, imageBlob).then((datasetUploadImageResponse: UploadImageResponse) => {
+            console.log(JSON.stringify(datasetUploadImageResponse, null, 2))
+            expect(datasetUploadImageResponse).not.toBeNull()
+            done()
+        }).catch((reason) => {
+            console.log(JSON.stringify(reason, null, 2))
+            done()
         })
     })
 
@@ -195,4 +194,17 @@ describe('Roboflow Rest API', () => {
             done()
         })
     })
+
+    test('Should run Object Detection', (done) => {
+        const imageBlob = BlobUtilities.dataURItoBlob(imageDataUrl)
+        roboflowRestApi.objectDetectionOnBlob(projectId, versionId, imageBlob).then((objectDetectionResponse: ObjectDetectionResponse) => {
+            console.log(JSON.stringify(objectDetectionResponse, null, 2))
+            expect(objectDetectionResponse).not.toBeNull()
+            done()
+        }).catch((reason) => {
+            console.log(JSON.stringify(reason, null, 2))
+            done()
+        })
+    }, 30000)
+
 })

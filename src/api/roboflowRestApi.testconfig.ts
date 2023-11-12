@@ -2,7 +2,7 @@ export class RoboflowRestApiTestConfig {
     static apiKey: string = ''
     static workspaceId: string = 'guy-ettinger-c9esn'
     static projectId: string = 'hard-hat-sample-w8nmd'
-    static versionId: string = "2"
+    static versionId: string = "3"
     static exportId: string = "voc"
     static jobId: string = "DYrtPC8aXUJMlWqPW5Kh"
     static imageDataUrl: string = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg=="

@@ -1,4 +1,4 @@
-import { ApiModel, OperationsConfigurationModel } from "../core";
+import { ApiModel } from "../core";
 import {
     AnnotationOperations,
     BatchResponse,
@@ -133,7 +133,7 @@ export class RoboflowRestApi extends ApiModel {
     // object detection operations
     private objectDetectionOperations: ObjectDetectionOperations = new ObjectDetectionOperations(this.operationsConfiguration, this.detectUrl)
 
-    async detect(modelId: string, modelVersion: string, imageBlob: Blob): Promise<ObjectDetectionResponse> {
+    async objectDetectionOnBlob(modelId: string, modelVersion: string, imageBlob: Blob): Promise<ObjectDetectionResponse> {
         return this.objectDetectionOperations.objectDetectionOnBlob(modelId, modelVersion, imageBlob)
     }
 }
