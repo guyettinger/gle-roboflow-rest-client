@@ -6,12 +6,14 @@ import {
     InstanceSegmentationResponse,
     JobResponse,
     JobsResponse,
+    MultiLabelClassificationResponse,
     ObjectDetectionResponse,
     ProjectResponse,
     RootResponse,
     SearchOptions,
     SearchResponse,
     SemanticSegmentationResponse,
+    SingleLabelClassificationResponse,
     TagOperationTypes,
     TagOptions,
     TagResponse,
@@ -214,6 +216,52 @@ describe('Roboflow Rest API', () => {
         roboflowRestApi.objectDetectionOnUrl(projectId, versionId, imageUrl).then((objectDetectionResponse: ObjectDetectionResponse) => {
             console.log(JSON.stringify(objectDetectionResponse, null, 2))
             expect(objectDetectionResponse).not.toBeNull()
+            done()
+        }).catch((reason) => {
+            console.log(JSON.stringify(reason, null, 2))
+            done()
+        })
+    }, 30000)
+
+    test('Should run Single Label Classification on Blob', (done) => {
+        const imageBlob = BlobUtilities.dataURItoBlob(imageDataUrl)
+        roboflowRestApi.singleLabelClassificationOnBlob(projectId, versionId, imageBlob).then((singleLabelClassificationResponse: SingleLabelClassificationResponse) => {
+            console.log(JSON.stringify(singleLabelClassificationResponse, null, 2))
+            expect(singleLabelClassificationResponse).not.toBeNull()
+            done()
+        }).catch((reason) => {
+            console.log(JSON.stringify(reason, null, 2))
+            done()
+        })
+    }, 30000)
+
+    test('Should run Single Label Classification on Url', (done) => {
+        roboflowRestApi.singleLabelClassificationOnUrl(projectId, versionId, imageUrl).then((singleLabelClassificationResponse: SingleLabelClassificationResponse) => {
+            console.log(JSON.stringify(singleLabelClassificationResponse, null, 2))
+            expect(singleLabelClassificationResponse).not.toBeNull()
+            done()
+        }).catch((reason) => {
+            console.log(JSON.stringify(reason, null, 2))
+            done()
+        })
+    }, 30000)
+
+    test('Should run Multi Label Classification on Blob', (done) => {
+        const imageBlob = BlobUtilities.dataURItoBlob(imageDataUrl)
+        roboflowRestApi.multiLabelClassificationOnBlob(projectId, versionId, imageBlob).then((multiLabelClassificationResponse: MultiLabelClassificationResponse) => {
+            console.log(JSON.stringify(multiLabelClassificationResponse, null, 2))
+            expect(multiLabelClassificationResponse).not.toBeNull()
+            done()
+        }).catch((reason) => {
+            console.log(JSON.stringify(reason, null, 2))
+            done()
+        })
+    }, 30000)
+
+    test('Should run Multi Label Classification on Url', (done) => {
+        roboflowRestApi.multiLabelClassificationOnUrl(projectId, versionId, imageUrl).then((multiLabelClassificationResponse: MultiLabelClassificationResponse) => {
+            console.log(JSON.stringify(multiLabelClassificationResponse, null, 2))
+            expect(multiLabelClassificationResponse).not.toBeNull()
             done()
         }).catch((reason) => {
             console.log(JSON.stringify(reason, null, 2))

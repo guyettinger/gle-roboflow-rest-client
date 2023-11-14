@@ -4,6 +4,8 @@ import {
     BatchResponse,
     BatchesOperations,
     BatchesResponse,
+    ClassificationOperations,
+    ClassificationOptions,
     ExportOperations,
     ExportResponse,
     ImageOperations,
@@ -13,6 +15,7 @@ import {
     JobResponse,
     JobsOperations,
     JobsResponse,
+    MultiLabelClassificationResponse,
     ObjectDetectionOperations,
     ObjectDetectionOptions,
     ObjectDetectionResponse,
@@ -23,6 +26,10 @@ import {
     SearchOperations,
     SearchOptions,
     SearchResponse,
+    SemanticSegmentationOperations,
+    SemanticSegmentationOptions,
+    SemanticSegmentationResponse,
+    SingleLabelClassificationResponse,
     TagOperations,
     TagOptions,
     TagResponse,
@@ -33,7 +40,7 @@ import {
     VersionOperations,
     VersionResponse,
     WorkspaceOperations,
-    WorkspaceResponse, SemanticSegmentationOperations, SemanticSegmentationOptions, SemanticSegmentationResponse,
+    WorkspaceResponse,
 } from "./operations";
 import { ProjectCreationInformation } from "./types";
 
@@ -147,6 +154,25 @@ export class RoboflowRestApi extends ApiModel {
 
     async objectDetectionOnUrl(modelId: string, modelVersion: string, imageUrl: string, objectDetectionOptions?: ObjectDetectionOptions): Promise<ObjectDetectionResponse> {
         return this.objectDetectionOperations.objectDetectionOnUrl(modelId, modelVersion, imageUrl, objectDetectionOptions)
+    }
+
+    // object detection operations
+    private classificationOperations: ClassificationOperations = new ClassificationOperations(this.operationsConfiguration, this.classifyUrl)
+
+    async singleLabelClassificationOnBlob(modelId: string, modelVersion: string, imageBlob: Blob, classificationOptions?: ClassificationOptions): Promise<SingleLabelClassificationResponse> {
+        return this.classificationOperations.singleLabelClassificationOnBlob(modelId, modelVersion, imageBlob, classificationOptions)
+    }
+
+    async singleLabelClassificationOnUrl(modelId: string, modelVersion: string, imageUrl: string, classificationOptions?: ClassificationOptions): Promise<SingleLabelClassificationResponse> {
+        return this.classificationOperations.singleLabelClassificationOnUrl(modelId, modelVersion, imageUrl, classificationOptions)
+    }
+
+    async multiLabelClassificationOnBlob(modelId: string, modelVersion: string, imageBlob: Blob, classificationOptions?: ClassificationOptions): Promise<MultiLabelClassificationResponse> {
+        return this.classificationOperations.multiLabelClassificationOnBlob(modelId, modelVersion, imageBlob, classificationOptions)
+    }
+
+    async multiLabelClassificationOnUrl(modelId: string, modelVersion: string, imageUrl: string, classificationOptions?: ClassificationOptions): Promise<MultiLabelClassificationResponse> {
+        return this.classificationOperations.multiLabelClassificationOnUrl(modelId, modelVersion, imageUrl, classificationOptions)
     }
 
     // instance segmentation operations
