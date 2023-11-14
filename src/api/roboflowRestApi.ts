@@ -54,6 +54,10 @@ export class RoboflowRestApi extends ApiModel {
         public segmentUrl = 'https://segment.roboflow.com',
     ) {
         super(apiUrl, apiKey)
+        this.objectDetectionOperations = new ObjectDetectionOperations(this.operationsConfiguration, this.detectUrl)
+        this.classificationOperations = new ClassificationOperations(this.operationsConfiguration, this.classifyUrl)
+        this.instanceSegmentationOperations = new InstanceSegmentationOperations(this.operationsConfiguration, this.outlineUrl)
+        this.semanticSegmentationOperations = new SemanticSegmentationOperations(this.operationsConfiguration, this.segmentUrl)
     }
 
     // root operations
@@ -146,7 +150,7 @@ export class RoboflowRestApi extends ApiModel {
     }
 
     // object detection operations
-    private objectDetectionOperations: ObjectDetectionOperations = new ObjectDetectionOperations(this.operationsConfiguration, this.detectUrl)
+    private objectDetectionOperations: ObjectDetectionOperations
 
     async objectDetectionOnBlob(modelId: string, modelVersion: string, imageBlob: Blob, objectDetectionOptions?: ObjectDetectionOptions): Promise<ObjectDetectionResponse> {
         return this.objectDetectionOperations.objectDetectionOnBlob(modelId, modelVersion, imageBlob, objectDetectionOptions)
@@ -157,7 +161,7 @@ export class RoboflowRestApi extends ApiModel {
     }
 
     // object detection operations
-    private classificationOperations: ClassificationOperations = new ClassificationOperations(this.operationsConfiguration, this.classifyUrl)
+    private classificationOperations: ClassificationOperations
 
     async singleLabelClassificationOnBlob(modelId: string, modelVersion: string, imageBlob: Blob, classificationOptions?: ClassificationOptions): Promise<SingleLabelClassificationResponse> {
         return this.classificationOperations.singleLabelClassificationOnBlob(modelId, modelVersion, imageBlob, classificationOptions)
@@ -176,7 +180,7 @@ export class RoboflowRestApi extends ApiModel {
     }
 
     // instance segmentation operations
-    private instanceSegmentationOperations: InstanceSegmentationOperations = new InstanceSegmentationOperations(this.operationsConfiguration, this.outlineUrl)
+    private instanceSegmentationOperations: InstanceSegmentationOperations
 
     async instanceSegmentationOnBlob(modelId: string, modelVersion: string, imageBlob: Blob, instanceSegmentationOptions?: InstanceSegmentationOptions): Promise<InstanceSegmentationResponse> {
         return this.instanceSegmentationOperations.instanceSegmentationOnBlob(modelId, modelVersion, imageBlob, instanceSegmentationOptions)
@@ -187,7 +191,7 @@ export class RoboflowRestApi extends ApiModel {
     }
 
     // semantic segmentation operations
-    private semanticSegmentationOperations: SemanticSegmentationOperations = new SemanticSegmentationOperations(this.operationsConfiguration, this.segmentUrl)
+    private semanticSegmentationOperations: SemanticSegmentationOperations
 
     async semanticSegmentationOnBlob(modelId: string, modelVersion: string, imageBlob: Blob, semanticSegmentationOptions?: SemanticSegmentationOptions): Promise<SemanticSegmentationResponse> {
         return this.semanticSegmentationOperations.semanticSegmentationOnBlob(modelId, modelVersion, imageBlob, semanticSegmentationOptions)
