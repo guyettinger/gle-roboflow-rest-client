@@ -27,7 +27,11 @@ import {
     SearchResponse, TagOperations, TagOptions, TagResponse
 } from "./operations";
 import { ProjectCreationInformation } from "./types";
-import { ObjectDetectionOperations, ObjectDetectionResponse } from "./operations/objectDetection";
+import {
+    ObjectDetectionOperations,
+    ObjectDetectionOptions,
+    ObjectDetectionResponse
+} from "./operations/objectDetection";
 
 export class RoboflowRestApi extends ApiModel {
     constructor(
@@ -133,7 +137,11 @@ export class RoboflowRestApi extends ApiModel {
     // object detection operations
     private objectDetectionOperations: ObjectDetectionOperations = new ObjectDetectionOperations(this.operationsConfiguration, this.detectUrl)
 
-    async objectDetectionOnBlob(modelId: string, modelVersion: string, imageBlob: Blob): Promise<ObjectDetectionResponse> {
-        return this.objectDetectionOperations.objectDetectionOnBlob(modelId, modelVersion, imageBlob)
+    async objectDetectionOnBlob(modelId: string, modelVersion: string, imageBlob: Blob, objectDetectionOptions?: ObjectDetectionOptions): Promise<ObjectDetectionResponse> {
+        return this.objectDetectionOperations.objectDetectionOnBlob(modelId, modelVersion, imageBlob, objectDetectionOptions)
+    }
+
+    async objectDetectionOnUrl(modelId: string, modelVersion: string, imageUrl: string, objectDetectionOptions?: ObjectDetectionOptions): Promise<ObjectDetectionResponse> {
+        return this.objectDetectionOperations.objectDetectionOnUrl(modelId, modelVersion, imageUrl, objectDetectionOptions)
     }
 }

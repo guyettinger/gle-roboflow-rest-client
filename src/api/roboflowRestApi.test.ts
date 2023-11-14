@@ -29,6 +29,7 @@ const versionId = RoboflowRestApiTestConfig.versionId
 const exportId = RoboflowRestApiTestConfig.exportId
 const jobId = RoboflowRestApiTestConfig.jobId
 const imageDataUrl = RoboflowRestApiTestConfig.imageDataUrl
+const imageUrl = RoboflowRestApiTestConfig.imageUrl
 const imageName = RoboflowRestApiTestConfig.imageName
 const imageId = RoboflowRestApiTestConfig.imageId
 const annotationName = RoboflowRestApiTestConfig.annotationName
@@ -195,9 +196,20 @@ describe('Roboflow Rest API', () => {
         })
     })
 
-    test('Should run Object Detection', (done) => {
+    test('Should run Object Detection on Blob', (done) => {
         const imageBlob = BlobUtilities.dataURItoBlob(imageDataUrl)
         roboflowRestApi.objectDetectionOnBlob(projectId, versionId, imageBlob).then((objectDetectionResponse: ObjectDetectionResponse) => {
+            console.log(JSON.stringify(objectDetectionResponse, null, 2))
+            expect(objectDetectionResponse).not.toBeNull()
+            done()
+        }).catch((reason) => {
+            console.log(JSON.stringify(reason, null, 2))
+            done()
+        })
+    }, 30000)
+
+    test('Should run Object Detection on Url', (done) => {
+        roboflowRestApi.objectDetectionOnUrl(projectId, versionId, imageUrl).then((objectDetectionResponse: ObjectDetectionResponse) => {
             console.log(JSON.stringify(objectDetectionResponse, null, 2))
             expect(objectDetectionResponse).not.toBeNull()
             done()

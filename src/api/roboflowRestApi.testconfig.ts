@@ -6,6 +6,7 @@ export class RoboflowRestApiTestConfig {
     static exportId: string = "voc"
     static jobId: string = "DYrtPC8aXUJMlWqPW5Kh"
     static imageDataUrl: string = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg=="
+    static imageUrl: string = "https://source.roboflow.com/1eRKBW2DCNhgsk4TWynWYt8bzEI3/yWJ78cSs0hZswmgg3nnC/original.jpg"
     static imageName: string = "image.png"
     static imageId: string = "IKlodUb6OjBLEx67gdnC"
     static annotationName: string = "annotation.xml"
