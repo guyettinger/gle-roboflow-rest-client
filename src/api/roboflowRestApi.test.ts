@@ -2,13 +2,13 @@ import { describe, expect, test } from '@jest/globals';
 import { RoboflowRestApi } from "./roboflowRestApi";
 import {
     BatchesResponse,
-    ExportResponse,
+    ExportResponse, InstanceSegmentationResponse,
     JobResponse,
     JobsResponse,
     ProjectResponse,
     RootResponse,
     SearchOptions,
-    SearchResponse,
+    SearchResponse, SemanticSegmentationResponse,
     TagOperationTypes,
     TagOptions,
     TagResponse,
@@ -212,6 +212,52 @@ describe('Roboflow Rest API', () => {
         roboflowRestApi.objectDetectionOnUrl(projectId, versionId, imageUrl).then((objectDetectionResponse: ObjectDetectionResponse) => {
             console.log(JSON.stringify(objectDetectionResponse, null, 2))
             expect(objectDetectionResponse).not.toBeNull()
+            done()
+        }).catch((reason) => {
+            console.log(JSON.stringify(reason, null, 2))
+            done()
+        })
+    }, 30000)
+
+    test('Should run Instance Segmentation on Blob', (done) => {
+        const imageBlob = BlobUtilities.dataURItoBlob(imageDataUrl)
+        roboflowRestApi.instanceSegmentationOnBlob(projectId, versionId, imageBlob).then((instanceSegmentationResponse: InstanceSegmentationResponse) => {
+            console.log(JSON.stringify(instanceSegmentationResponse, null, 2))
+            expect(instanceSegmentationResponse).not.toBeNull()
+            done()
+        }).catch((reason) => {
+            console.log(JSON.stringify(reason, null, 2))
+            done()
+        })
+    }, 30000)
+
+    test('Should run Instance Segmentation on Url', (done) => {
+        roboflowRestApi.instanceSegmentationOnUrl(projectId, versionId, imageUrl).then((instanceSegmentationResponse: InstanceSegmentationResponse) => {
+            console.log(JSON.stringify(instanceSegmentationResponse, null, 2))
+            expect(instanceSegmentationResponse).not.toBeNull()
+            done()
+        }).catch((reason) => {
+            console.log(JSON.stringify(reason, null, 2))
+            done()
+        })
+    }, 30000)
+
+    test('Should run Semantic Segmentation on Blob', (done) => {
+        const imageBlob = BlobUtilities.dataURItoBlob(imageDataUrl)
+        roboflowRestApi.semanticSegmentationOnBlob(projectId, versionId, imageBlob).then((semanticSegmentationResponse: SemanticSegmentationResponse) => {
+            console.log(JSON.stringify(semanticSegmentationResponse, null, 2))
+            expect(semanticSegmentationResponse).not.toBeNull()
+            done()
+        }).catch((reason) => {
+            console.log(JSON.stringify(reason, null, 2))
+            done()
+        })
+    }, 30000)
+
+    test('Should run Semantic Segmentation on Url', (done) => {
+        roboflowRestApi.semanticSegmentationOnUrl(projectId, versionId, imageUrl).then((semanticSegmentationResponse: SemanticSegmentationResponse) => {
+            console.log(JSON.stringify(semanticSegmentationResponse, null, 2))
+            expect(semanticSegmentationResponse).not.toBeNull()
             done()
         }).catch((reason) => {
             console.log(JSON.stringify(reason, null, 2))

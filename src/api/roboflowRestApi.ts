@@ -7,13 +7,25 @@ import {
     ExportOperations,
     ExportResponse,
     ImageOperations,
+    InstanceSegmentationOperations,
+    InstanceSegmentationOptions,
+    InstanceSegmentationResponse,
     JobResponse,
     JobsOperations,
     JobsResponse,
+    ObjectDetectionOperations,
+    ObjectDetectionOptions,
+    ObjectDetectionResponse,
     ProjectOperations,
     ProjectResponse,
     RootOperations,
     RootResponse,
+    SearchOperations,
+    SearchOptions,
+    SearchResponse,
+    TagOperations,
+    TagOptions,
+    TagResponse,
     UploadAnnotationOptions,
     UploadAnnotationResponse,
     UploadImageOptions,
@@ -21,17 +33,9 @@ import {
     VersionOperations,
     VersionResponse,
     WorkspaceOperations,
-    WorkspaceResponse,
-    SearchOperations,
-    SearchOptions,
-    SearchResponse, TagOperations, TagOptions, TagResponse
+    WorkspaceResponse, SemanticSegmentationOperations, SemanticSegmentationOptions, SemanticSegmentationResponse,
 } from "./operations";
 import { ProjectCreationInformation } from "./types";
-import {
-    ObjectDetectionOperations,
-    ObjectDetectionOptions,
-    ObjectDetectionResponse
-} from "./operations/objectDetection";
 
 export class RoboflowRestApi extends ApiModel {
     constructor(
@@ -143,5 +147,27 @@ export class RoboflowRestApi extends ApiModel {
 
     async objectDetectionOnUrl(modelId: string, modelVersion: string, imageUrl: string, objectDetectionOptions?: ObjectDetectionOptions): Promise<ObjectDetectionResponse> {
         return this.objectDetectionOperations.objectDetectionOnUrl(modelId, modelVersion, imageUrl, objectDetectionOptions)
+    }
+
+    // instance segmentation operations
+    private instanceSegmentationOperations: InstanceSegmentationOperations = new InstanceSegmentationOperations(this.operationsConfiguration, this.outlineUrl)
+
+    async instanceSegmentationOnBlob(modelId: string, modelVersion: string, imageBlob: Blob, instanceSegmentationOptions?: InstanceSegmentationOptions): Promise<InstanceSegmentationResponse> {
+        return this.instanceSegmentationOperations.instanceSegmentationOnBlob(modelId, modelVersion, imageBlob, instanceSegmentationOptions)
+    }
+
+    async instanceSegmentationOnUrl(modelId: string, modelVersion: string, imageUrl: string, instanceSegmentationOptions?: InstanceSegmentationOptions): Promise<InstanceSegmentationResponse> {
+        return this.instanceSegmentationOperations.instanceSegmentationOnUrl(modelId, modelVersion, imageUrl, instanceSegmentationOptions)
+    }
+
+    // semantic segmentation operations
+    private semanticSegmentationOperations: SemanticSegmentationOperations = new SemanticSegmentationOperations(this.operationsConfiguration, this.segmentUrl)
+
+    async semanticSegmentationOnBlob(modelId: string, modelVersion: string, imageBlob: Blob, semanticSegmentationOptions?: SemanticSegmentationOptions): Promise<SemanticSegmentationResponse> {
+        return this.semanticSegmentationOperations.semanticSegmentationOnBlob(modelId, modelVersion, imageBlob, semanticSegmentationOptions)
+    }
+
+    async semanticSegmentationOnUrl(modelId: string, modelVersion: string, imageUrl: string, semanticSegmentationOptions?: SemanticSegmentationOptions): Promise<SemanticSegmentationResponse> {
+        return this.semanticSegmentationOperations.semanticSegmentationOnUrl(modelId, modelVersion, imageUrl, semanticSegmentationOptions)
     }
 }

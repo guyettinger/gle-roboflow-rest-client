@@ -1,0 +1,1 @@
+export { type InstanceSegmentationPredictionInformation } from './instanceSegmentationPredictionInformation'
