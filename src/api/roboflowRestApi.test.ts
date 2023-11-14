@@ -2,13 +2,16 @@ import { describe, expect, test } from '@jest/globals';
 import { RoboflowRestApi } from "./roboflowRestApi";
 import {
     BatchesResponse,
-    ExportResponse, InstanceSegmentationResponse,
+    ExportResponse,
+    InstanceSegmentationResponse,
     JobResponse,
     JobsResponse,
+    ObjectDetectionResponse,
     ProjectResponse,
     RootResponse,
     SearchOptions,
-    SearchResponse, SemanticSegmentationResponse,
+    SearchResponse,
+    SemanticSegmentationResponse,
     TagOperationTypes,
     TagOptions,
     TagResponse,
@@ -18,7 +21,6 @@ import {
     WorkspaceResponse,
 } from "./operations";
 import { RoboflowRestApiTestConfig } from "./roboflowRestApi.testconfig";
-import { ObjectDetectionResponse } from "./operations/objectDetection";
 import { BlobUtilities } from "../core";
 
 // test config
