@@ -34,7 +34,12 @@ export class ImageOperations extends OperationsModel {
             const uploadImageUrl = this.getProjectImageUploadRoute(projectId)
             const response = await this.client.post<UploadImageResponse>(
                 uploadImageUrl,
-                formData
+                formData,
+                {
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded"
+                    }
+                }
             )
             const uploadImageResponse = response.data
             return uploadImageResponse
