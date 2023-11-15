@@ -37,7 +37,7 @@ export class ImageOperations extends OperationsModel {
                 formData,
                 {
                     headers: {
-                        "Content-Type": "application/x-www-form-urlencoded"
+                        "Content-Type": "multipart/form-data"
                     }
                 }
             )
