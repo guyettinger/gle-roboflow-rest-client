@@ -128,6 +128,10 @@ export class RoboflowRestApi extends ApiModel {
         return this.imageOperations.uploadImage(projectId, imageFileName, imageFile, options)
     }
 
+    async uploadImageFormData(projectId: string, imageFileName: string, imageFile: Blob, options?: UploadImageOptions): Promise<UploadImageResponse> {
+        return this.imageOperations.uploadImageFormData(projectId, imageFileName, imageFile, options)
+    }
+
     // annotation operations
     private annotationOperations: AnnotationOperations = new AnnotationOperations(this.operationsConfiguration)
 

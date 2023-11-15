@@ -143,6 +143,18 @@ describe('Roboflow Rest API', () => {
         })
     })
 
+    test('Should upload Image Form Data', (done) => {
+        const imageBlob = BlobUtilities.dataURItoBlob(imageDataUrl)
+        roboflowRestApi.uploadImageFormData(projectId, imageName, imageBlob).then((datasetUploadImageResponse: UploadImageResponse) => {
+            console.log(JSON.stringify(datasetUploadImageResponse, null, 2))
+            expect(datasetUploadImageResponse).not.toBeNull()
+            done()
+        }).catch((reason) => {
+            console.log(JSON.stringify(reason, null, 2))
+            done()
+        })
+    })
+
     test('Should upload Annotation', (done) => {
         roboflowRestApi.uploadAnnotation(projectId, imageId, annotationName, annotationData, {overwrite: true}).then((datasetUploadAnnotationResponse: UploadAnnotationResponse) => {
             console.log(JSON.stringify(datasetUploadAnnotationResponse, null, 2))
